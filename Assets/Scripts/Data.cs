@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Data
 {
-    public enum Ability
+    public enum AbilityType
     {
         Fire,
         Wood,
