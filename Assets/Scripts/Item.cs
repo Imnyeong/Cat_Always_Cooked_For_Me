@@ -1,5 +1,10 @@
-public class Item
+using UnityEngine;
+
+namespace Imnyeong
 {
-    private Data.AbilityType abilityType { get; }
-    private int abilityValue { get; }
+    public abstract class Item: ScriptableObject
+    {
+        private AbilityType abilityType { get; }
+        private int abilityValue { get; }
+    }
 }

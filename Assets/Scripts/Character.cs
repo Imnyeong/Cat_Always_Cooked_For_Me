@@ -3,81 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Character : MonoBehaviour
+namespace Imnyeong
 {
-    [field: Header("Ability")]
-    [field: SerializeField] private Data.AbilityType abilityType { get; }
-    [field: SerializeField] private int abilityValue { get ; set ; }
-
-    [field: Header("Work")]
-    [field: SerializeField] private int maxWorkPoint { get ; set ; }
-    [field: SerializeField] private int currentWorkPoint { get ; set ; }
-    [field: SerializeField] private Text textWorkPoint;
-
-    private float workDelay { get; set; } = 1.0f;
-    private Coroutine coroutine = null;
-
-    private void Start()
+    public class Character : MonoBehaviour
     {
-        coroutine = StartCoroutine(WorkCoroutine());
-    }
-    public void OnClickCharacter()
-    {
-        IncreaseWorkPoint();
-    }
+        [field: Header("Ability")]
+        [field: SerializeField] private AbilityType abilityType { get; }
+        [field: SerializeField] private int abilityValue { get; set; }
 
-    //public void StopCoroutine()
-    //{
-    //    if (coroutine != null)
-    //    {
-    //        StopCoroutine(coroutine);
-    //        coroutine = null;
-    //    }
-    //    else
-    //    {
-    //        coroutine = StartCoroutine(WorkCoroutine());
-    //    }
-    //}
+        [field: Header("Work")]
+        [field: SerializeField] private int maxWorkPoint { get; set; }
+        [field: SerializeField] private int currentWorkPoint { get; set; }
+        [field: SerializeField] private Text textWorkPoint;
 
-    private IEnumerator WorkCoroutine()
-    {
-        yield return new WaitForSecondsRealtime(workDelay);
-        IncreaseWorkPoint();
-        coroutine = StartCoroutine(WorkCoroutine());
-    }
-    private void IncreaseWorkPoint()
-    {
-        if(currentWorkPoint >= maxWorkPoint)
+        private float workDelay { get; set; } = 1.0f;
+        private Coroutine coroutine = null;
+
+        private void Start()
         {
-            switch (abilityType)
-            {
-                case Data.AbilityType.Fire:
-                    {
-                        Debug.Log($"불 {abilityValue} 포인트");
-                        break;
-                    }
-                case Data.AbilityType.Wood:
-                    {
-                        Debug.Log($"나무 {abilityValue} 포인트");
-                        break;
-                    }
-                case Data.AbilityType.Rice:
-                    {
-                        Debug.Log($"쌀 {abilityValue} 포인트");
-                        break;
-                    }
-                case Data.AbilityType.Fish:
-                    {
-                        Debug.Log($"낚시 {abilityValue} 포인트");
-                        break;
-                    }
-            }
-            currentWorkPoint = 0;
+            coroutine = StartCoroutine(WorkCoroutine());
         }
-        else
+        public void OnClickCharacter()
+        {
+            IncreaseWorkPoint();
+        }
+
+        //public void StopCoroutine()
+        //{
+        //    if (coroutine != null)
+        //    {
+        //        StopCoroutine(coroutine);
+        //        coroutine = null;
+        //    }
+        //    else
+        //    {
+        //        coroutine = StartCoroutine(WorkCoroutine());
+        //    }
+        //}
+
+        private IEnumerator WorkCoroutine()
+        {
+            yield return new WaitForSecondsRealtime(workDelay);
+            IncreaseWorkPoint();
+            coroutine = StartCoroutine(WorkCoroutine());
+        }
+        private void IncreaseWorkPoint()
         {
             currentWorkPoint++;
+
+            if (currentWorkPoint >= maxWorkPoint)
+            {
+                ItemManager.instance.GetItem(abilityType, abilityValue);
+                currentWorkPoint = 0;
+            }
+
+            textWorkPoint.text = currentWorkPoint.ToString();
         }
-        textWorkPoint.text = currentWorkPoint.ToString();
     }
 }
