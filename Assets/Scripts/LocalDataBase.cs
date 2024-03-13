@@ -8,7 +8,7 @@ namespace Imnyeong
     public class LocalDataBase : MonoBehaviour
     {
         public static LocalDataBase instance;
-        public List<Tuple<Item, int>> inventory = new List<Tuple<Item, int>>();
+        public List<ConsumptionItem> consumptionInventory = new List<ConsumptionItem>();
 
         private void Awake()
         {

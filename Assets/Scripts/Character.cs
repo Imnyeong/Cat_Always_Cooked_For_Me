@@ -8,7 +8,7 @@ namespace Imnyeong
     public class Character : MonoBehaviour
     {
         [field: Header("Ability")]
-        [field: SerializeField] private AbilityType abilityType { get; }
+        [field: SerializeField] private AbilityType abilityType { get; set; }
         [field: SerializeField] private int abilityValue { get; set; }
 
         [field: Header("Work")]

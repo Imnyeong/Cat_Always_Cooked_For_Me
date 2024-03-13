@@ -2,9 +2,16 @@ using UnityEngine;
 
 namespace Imnyeong
 {
-    public abstract class Item: ScriptableObject
+    [CreateAssetMenu]
+    public class Item: ScriptableObject
     {
-        private AbilityType abilityType { get; }
-        private int abilityValue { get; }
+        public AbilityType abilityType;
+        public int abilityValue;
+    }
+
+    public class ConsumptionItem
+    {
+        public Item item;
+        public int count;
     }
 }
