@@ -5,20 +5,10 @@ namespace Imnyeong
 {
     public class LocalDataBase : MonoBehaviour
     {
-        public static LocalDataBase instance;
-        public List<Ingredient> consumptionInventory = new List<Ingredient>();
-
+        [Header("Cat")]
         public List<Cat> catList = new List<Cat>();
-
-        private void Awake()
-        {
-            DontDestroyOnLoad(this);
-
-            if (instance == null)
-            {
-                instance = this;
-            }
-        }
-
+        [Header("Inventory")]
+        public List<Ingredient> ingredientInventory = new List<Ingredient>();
+        public List<Food> foodInventory = new List<Food>();
     }
 }

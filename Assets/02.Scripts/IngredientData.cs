@@ -9,11 +9,12 @@ namespace Imnyeong
         public Image thumbnail;
         public AbilityType abilityType;
         public int abilityValue;
+        public string ingredientName;
+        public string description;
     }
-
     public class Ingredient
     {
-        public IngredientData item;
+        public IngredientData ingredient;
         public int count;
     }
 }

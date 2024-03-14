@@ -6,12 +6,13 @@ namespace Imnyeong
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance;
-        
-        public List<IngredientData> ingredientDatas;
-        private IngredientData currentIngredientData = null;
-        
+        public GameData gameData;
+        public LocalDataBase localDataBase;
+
+        private IngredientData currentIngredientData = null;        
         private Ingredient currentIngredient = null;
 
+        #region Unity Life Cycle
         private void Awake()
         {
             DontDestroyOnLoad(this);
@@ -21,41 +22,47 @@ namespace Imnyeong
                 instance = this;
             }
         }
-        public IngredientData FindData(AbilityType _type, int _value)
+        #endregion
+        #region Ingredient
+        public IngredientData FindIngredientData(AbilityType _type, int _value)
         {
-            currentIngredientData = ingredientDatas.Find(x => x.abilityType == _type && x.abilityValue == _value);
+            currentIngredientData = gameData.ingredientDatas.Find(x => x.abilityType == _type && x.abilityValue == _value);
 
             if (currentIngredientData != null)
                 return currentIngredientData;
             else
                 return null;
         }
-        public bool FindItem(IngredientData _item)
+        public bool FindIngredient(IngredientData _data)
         {
-            currentIngredient = LocalDataBase.instance.consumptionInventory.Find(x => x.item == _item);
+            currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _data);
             return currentIngredient != null;
         }
-        public void GetItem(AbilityType _type, int _value)
+        public void GetIngredient(AbilityType _type, int _value)
         {
-            if (FindData(_type, _value) != null)
+            if (FindIngredientData(_type, _value) != null)
             {
-                if (FindItem(currentIngredientData))
+                if (FindIngredient(currentIngredientData))
                 {
                     currentIngredient.count++;
-                    Debug.Log($"currentIngredient = {currentIngredient.item.abilityType}, {currentIngredient.item.abilityValue}, currentCount = {currentIngredient.count}");
+                    Debug.Log($"currentIngredient = {currentIngredient.ingredient.abilityType}, {currentIngredient.ingredient.abilityValue}, currentCount = {currentIngredient.count}");
                 }
                 else
                 {
                     Ingredient newIngredient = new Ingredient();
-                    newIngredient.item = currentIngredientData;
+                    newIngredient.ingredient = currentIngredientData;
                     newIngredient.count = 1;
-                    Debug.Log($"newIngredient = {newIngredient.item.abilityType}, {newIngredient.item.abilityValue}, newCount = {newIngredient.count}");
-                    LocalDataBase.instance.consumptionInventory.Add(newIngredient);
+                    Debug.Log($"newIngredient = {newIngredient.ingredient.abilityType}, {newIngredient.ingredient.abilityValue}, newCount = {newIngredient.count}");
+                    localDataBase.ingredientInventory.Add(newIngredient);
                 }
             }
 
             currentIngredientData = null;
             currentIngredient = null;
         }
+        #endregion
+        #region Food
+
+        #endregion
     }
 }

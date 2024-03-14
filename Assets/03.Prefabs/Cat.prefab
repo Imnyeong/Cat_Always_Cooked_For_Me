@@ -86,8 +86,8 @@ GameObject:
   - component: {fileID: 4373423052361180955}
   - component: {fileID: 4373423052361180949}
   - component: {fileID: 4373423052361180948}
-  - component: {fileID: 4373423052361180951}
   - component: {fileID: 4373423052361180954}
+  - component: {fileID: 4373423052361180951}
   m_Layer: 5
   m_Name: Cat
   m_TagString: Untagged
@@ -141,6 +141,22 @@ MonoBehaviour:
   <maxWorkPoint>k__BackingField: 10
   <currentWorkPoint>k__BackingField: 0
   textWorkPoint: {fileID: 4373423053058444380}
+--- !u!111 &4373423052361180954
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373423052361180952}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &4373423052361180951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,22 +213,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!111 &4373423052361180954
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4373423052361180952}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &4373423053058444386
 GameObject:
   m_ObjectHideFlags: 0

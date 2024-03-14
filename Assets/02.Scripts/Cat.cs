@@ -53,7 +53,7 @@ namespace Imnyeong
 
             if (currentWorkPoint >= maxWorkPoint)
             {
-                GameManager.instance.GetItem(abilityType, abilityValue);
+                GameManager.instance.GetIngredient(abilityType, abilityValue);
                 currentWorkPoint = 0;
             }
 
