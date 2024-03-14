@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Imnyeong
 {
-    public class Character : MonoBehaviour
+    public class Cat : MonoBehaviour
     {
         [field: Header("Ability")]
         [field: SerializeField] private AbilityType abilityType { get; set; }
@@ -53,7 +53,7 @@ namespace Imnyeong
 
             if (currentWorkPoint >= maxWorkPoint)
             {
-                ItemManager.instance.GetItem(abilityType, abilityValue);
+                GameManager.instance.GetItem(abilityType, abilityValue);
                 currentWorkPoint = 0;
             }
 

@@ -1,17 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Imnyeong
 {
     [CreateAssetMenu]
-    public class Item: ScriptableObject
+    public class IngredientData : ScriptableObject
     {
+        public Image thumbnail;
         public AbilityType abilityType;
         public int abilityValue;
     }
 
-    public class ConsumptionItem
+    public class Ingredient
     {
-        public Item item;
+        public IngredientData item;
         public int count;
     }
 }
