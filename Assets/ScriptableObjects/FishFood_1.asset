@@ -19,4 +19,5 @@ MonoBehaviour:
   requiredTime: 10
   requiredIngredients:
   - {fileID: 11400000, guid: 99969252bf4c9e34695525b92e5b14a2, type: 2}
-  requiredCounts: 05000000
+  - {fileID: 11400000, guid: 88de0003159a007419d918f301ebce30, type: 2}
+  requiredCounts: 0500000002000000

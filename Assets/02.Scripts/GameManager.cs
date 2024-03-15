@@ -12,6 +12,8 @@ namespace Imnyeong
         private IngredientData currentIngredientData = null;        
         private Ingredient currentIngredient = null;
 
+        private Food currentFood = null;
+
         #region Unity Life Cycle
         private void Awake()
         {
@@ -62,7 +64,72 @@ namespace Imnyeong
         }
         #endregion
         #region Food
+        public bool CheckIngredients(FoodData _food)
+        {
+            int checkCount = 0;
 
+            for (int i = 0; i < _food.requiredIngredients.Count; i++)
+            {
+                currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _food.requiredIngredients[i]);
+
+                if (currentIngredient == null || currentIngredient.count < _food.requiredCounts[i])
+                {
+                    Debug.Log("재료 부족");
+                    currentIngredient = null;
+                    return false;
+                }
+                else 
+                {
+                    checkCount++;
+                }
+            }
+            if(checkCount == _food.requiredIngredients.Count)
+            {
+                for (int i = 0; i < _food.requiredIngredients.Count; i++)
+                {
+                    currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _food.requiredIngredients[i]);
+
+                    if (currentIngredient.count == _food.requiredCounts[i])
+                    {
+                        localDataBase.ingredientInventory.Remove(currentIngredient);
+                    }
+                    else
+                    {
+                        currentIngredient.count -= _food.requiredCounts[i];
+                    }
+                }
+                Debug.Log("요리 성공");
+                return true;
+            }
+
+
+            return false;
+        }
+        public bool FindFood(FoodData _data)
+        {
+            currentFood = localDataBase.foodInventory.Find(x => x.food == _data);
+            return currentFood != null;
+        }
+        public void GetFood(FoodData _data)
+        {
+            if(!CheckIngredients(_data))
+                return;
+
+            if (FindFood(_data))
+            {
+                currentFood.count++;
+            }
+            else
+            {
+                Food newFood = new Food();
+                newFood.food = _data;
+                newFood.count = 1;
+                localDataBase.foodInventory.Add(newFood);
+            }
+
+            currentIngredient = null;
+            currentFood = null;
+        }
         #endregion
     }
 }
