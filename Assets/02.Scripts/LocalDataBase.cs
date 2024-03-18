@@ -10,6 +10,7 @@ namespace Imnyeong
         [Header("Inventory")]
         public List<Ingredient> ingredientInventory = new List<Ingredient>();
         public List<Food> foodInventory = new List<Food>();
+        public int currentMoney = 0;
 
         public void ShowInventory()
         {

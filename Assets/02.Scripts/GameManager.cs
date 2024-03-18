@@ -151,7 +151,27 @@ namespace Imnyeong
         #region Money
         public void GetMoney(int _price)
         {
+            if(localDataBase.currentMoney + _price >= int.MaxValue)
+            {
+                localDataBase.currentMoney = int.MaxValue;
 
+            }
+            else
+            {
+                localDataBase.currentMoney += _price;
+            }
+        }
+        public bool LoseMoney(int _price)
+        {
+            if (localDataBase.currentMoney - _price <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                localDataBase.currentMoney -= _price;
+                return true;
+            }
         }
         #endregion
     }
