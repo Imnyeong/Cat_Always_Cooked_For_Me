@@ -15,6 +15,7 @@ namespace Imnyeong
         [field: SerializeField] private int maxWorkPoint { get; set; }
         [field: SerializeField] private int currentWorkPoint { get; set; }
         [field: SerializeField] private Text textWorkPoint;
+        [field: SerializeField] private Slider workSlider;
 
         private float workDelay { get; set; } = 1.0f;
         private Coroutine coroutine = null;
@@ -56,8 +57,8 @@ namespace Imnyeong
                 GameManager.instance.GetIngredient(abilityType, abilityValue);
                 currentWorkPoint = 0;
             }
-
-            textWorkPoint.text = currentWorkPoint.ToString();
+            workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);
+            //textWorkPoint.text = $"{currentWorkPoint} / {maxWorkPoint}";
         }
     }
 }

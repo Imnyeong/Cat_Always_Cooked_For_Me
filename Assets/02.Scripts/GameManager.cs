@@ -101,8 +101,6 @@ namespace Imnyeong
                 Debug.Log("요리 성공");
                 return true;
             }
-
-
             return false;
         }
         public bool FindFood(FoodData _data)
@@ -129,6 +127,31 @@ namespace Imnyeong
 
             currentIngredient = null;
             currentFood = null;
+        }
+        public void SellFood(FoodData _data)
+        {
+            if (!FindFood(_data))
+            {
+                return;
+            }
+            else
+            {
+                if (currentFood.count > 1)
+                {
+                    currentFood.count--;
+                }
+                else
+                {
+                    localDataBase.foodInventory.Remove(currentFood);
+                }
+            }
+            currentFood = null;
+        }
+        #endregion
+        #region Money
+        public void GetMoney(int _price)
+        {
+
         }
         #endregion
     }
