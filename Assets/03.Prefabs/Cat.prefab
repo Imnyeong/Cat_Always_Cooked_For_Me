@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <abilityType>k__BackingField: 2
   <abilityValue>k__BackingField: 1
-  <maxWorkPoint>k__BackingField: 100
+  <maxWorkPoint>k__BackingField: 10
   <currentWorkPoint>k__BackingField: 0
   textWorkPoint: {fileID: 4373423053058444380}
   workSlider: {fileID: 7427914769986230196}
