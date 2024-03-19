@@ -57,7 +57,6 @@ public class InfiniteScroll : UIBehaviour
 			return _itemScale;
 		}
 	}
-
     protected override void OnEnable ()
 	{
 		var controllers = GetComponents<MonoBehaviour>()
@@ -76,31 +75,49 @@ public class InfiniteScroll : UIBehaviour
 		{
 			controller.OnPostSetupItems();
 		}
-		
+
 		for (int i = 0; i < instantateItemCount; i++)
 		{
-			var item = GameObject.Instantiate(itemPrototype) as RectTransform;
-			item.SetParent(transform, false);
-			item.name = i.ToString();
-			item.anchoredPosition = direction == Direction.Vertical ? new Vector2(0, -itemScale * i) : new Vector2(itemScale * i, 0);
-			itemList.AddLast(item);
+			if(transform.childCount >= instantateItemCount)
+            {
+				var item = transform.GetChild(i).GetComponent<RectTransform>();
+				//item.SetParent(transform, false);
+				//item.name = i.ToString();
+				//item.anchoredPosition = direction == Direction.Vertical ? new Vector2(0, -itemScale * i) : new Vector2(itemScale * i, 0);
+				//itemList.AddLast(item);
 
-			item.gameObject.SetActive(true);
+				item.gameObject.SetActive(true);
 
-			foreach (var controller in controllers)
-			{
-				controller.OnUpdateItem(i, item.gameObject);
+				foreach (var controller in controllers)
+				{
+					controller.OnUpdateItem(i, item.gameObject);
+				}
+			}
+			else
+            {
+				var item = GameObject.Instantiate(itemPrototype) as RectTransform;
+				item.SetParent(transform, false);
+				item.name = i.ToString();
+				item.anchoredPosition = direction == Direction.Vertical ? new Vector2(0, -itemScale * i) : new Vector2(itemScale * i, 0);
+				itemList.AddLast(item);
+
+				item.gameObject.SetActive(true);
+
+				foreach (var controller in controllers)
+				{
+					controller.OnUpdateItem(i, item.gameObject);
+				}
 			}
 		}
 	}
 
-    protected override void OnDisable()
-    {
-		for (int i = 0; i < transform.childCount; i++)
-		{
-			Destroy(transform.GetChild(i).gameObject);
-		}
-	}
+    //protected override void OnDisable()
+    //{
+	//	for (int i = 0; i < transform.childCount; i++)
+	//	{
+	//		Destroy(transform.GetChild(i).gameObject);
+	//	}
+	//}
 
     void Update()
 	{
