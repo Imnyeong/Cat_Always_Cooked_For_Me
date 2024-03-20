@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 4373423052361180955}
   - component: {fileID: 4373423052361180949}
   - component: {fileID: 4373423052361180948}
-  - component: {fileID: 4373423052361180954}
+  - component: {fileID: 2184478546828535356}
   - component: {fileID: 4373423052361180951}
   m_Layer: 5
   m_Name: Cat
@@ -292,22 +292,25 @@ MonoBehaviour:
   <currentWorkPoint>k__BackingField: 0
   textWorkPoint: {fileID: 4373423053058444380}
   workSlider: {fileID: 7427914769986230196}
---- !u!111 &4373423052361180954
-Animation:
+--- !u!95 &2184478546828535356
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4373423052361180952}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9a094b9ac43ca81428932cbf82f6d40b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d090b32254fb6d47a509a80774d95d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4373423052361180951
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,4 +6,11 @@ namespace Imnyeong
         Rice,
         Fish
     }
+    public enum ViewType
+    {
+        Inventory,
+        Food,
+        Store,
+        Gacha
+    }
 }

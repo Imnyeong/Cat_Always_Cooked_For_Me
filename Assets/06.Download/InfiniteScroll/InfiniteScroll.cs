@@ -81,10 +81,6 @@ public class InfiniteScroll : UIBehaviour
 			if(transform.childCount >= instantateItemCount)
             {
 				var item = transform.GetChild(i).GetComponent<RectTransform>();
-				//item.SetParent(transform, false);
-				//item.name = i.ToString();
-				//item.anchoredPosition = direction == Direction.Vertical ? new Vector2(0, -itemScale * i) : new Vector2(itemScale * i, 0);
-				//itemList.AddLast(item);
 
 				item.gameObject.SetActive(true);
 
@@ -110,14 +106,6 @@ public class InfiniteScroll : UIBehaviour
 			}
 		}
 	}
-
-    //protected override void OnDisable()
-    //{
-	//	for (int i = 0; i < transform.childCount; i++)
-	//	{
-	//		Destroy(transform.GetChild(i).gameObject);
-	//	}
-	//}
 
     void Update()
 	{
