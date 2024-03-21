@@ -11,6 +11,8 @@ namespace Imnyeong
         public List<Ingredient> ingredientInventory = new List<Ingredient>();
         public List<Food> foodInventory = new List<Food>();
         public int currentMoney = 0;
+        public int currentCash = 0;
+        public int currentChur = 0;
 
         public void ShowInventory()
         {

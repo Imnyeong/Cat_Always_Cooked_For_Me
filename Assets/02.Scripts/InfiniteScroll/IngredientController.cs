@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,11 +7,14 @@ namespace Imnyeong
 	[RequireComponent(typeof(InfiniteScroll))]
 	public class IngredientController : MonoBehaviour, IInfiniteScrollSetup
 	{
+		private List<Ingredient> ingredients;
 		private int max;
 
 		public void OnPostSetupItems()
 		{
-			max = GameManager.instance.localDataBase.ingredientInventory.Count;
+			ingredients = GameManager.instance.localDataBase.ingredientInventory;
+			max = ingredients.Count;
+
 			var infiniteScroll = GetComponent<InfiniteScroll>();
 			infiniteScroll.onUpdateItem.AddListener(OnUpdateItem);
 			GetComponentInParent<ScrollRect>().movementType = ScrollRect.MovementType.Clamped;
@@ -33,7 +35,7 @@ namespace Imnyeong
 			{
 				obj.SetActive(true);
 				var item = obj.GetComponentInChildren<IngredientItem>();
-				item.UpdateItem(itemCount);
+				item.UpdateItem(ingredients[itemCount]);
 			}
 		}
 	}

@@ -16,11 +16,12 @@ namespace Imnyeong
 		private string foodName;
 		private int foodCount;
 
-		public void UpdateItem(int count)
+		public void UpdateItem(Food _food)
 		{
-			foodThmbnail = GameManager.instance.localDataBase.foodInventory[count].food.thumbnail;
-			foodName = GameManager.instance.localDataBase.foodInventory[count].food.foodName;
-			foodCount = GameManager.instance.localDataBase.foodInventory[count].count;
+			foodThmbnail = _food.food.thumbnail;
+			foodName = _food.food.foodName;
+			foodCount = _food.count;
+
 			SetItem(foodThmbnail, foodName, foodCount);
 		}
 

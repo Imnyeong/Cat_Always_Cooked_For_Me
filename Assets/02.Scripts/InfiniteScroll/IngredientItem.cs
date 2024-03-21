@@ -16,11 +16,12 @@ namespace Imnyeong
 		private string ingredientName;
 		private int ingredientCount;
 
-		public void UpdateItem(int count)
+		public void UpdateItem(Ingredient _ingredient)
 		{
-			ingredientThmbnail = GameManager.instance.localDataBase.ingredientInventory[count].ingredient.thumbnail;
-			ingredientName = GameManager.instance.localDataBase.ingredientInventory[count].ingredient.ingredientName;
-			ingredientCount = GameManager.instance.localDataBase.ingredientInventory[count].count;
+			ingredientThmbnail = _ingredient.ingredient.thumbnail;
+			ingredientName = _ingredient.ingredient.ingredientName;
+			ingredientCount = _ingredient.count;
+
 			SetItem(ingredientThmbnail, ingredientName, ingredientCount);
 		}
 

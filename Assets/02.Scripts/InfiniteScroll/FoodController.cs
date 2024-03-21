@@ -8,11 +8,14 @@ namespace Imnyeong
 	[RequireComponent(typeof(InfiniteScroll))]
 	public class FoodController : MonoBehaviour, IInfiniteScrollSetup
 	{
+		private List<Food> foods;
 		private int max;
 
 		public void OnPostSetupItems()
 		{
-			max = GameManager.instance.localDataBase.foodInventory.Count;
+			foods = GameManager.instance.localDataBase.foodInventory;
+			max = foods.Count;
+
 			var infiniteScroll = GetComponent<InfiniteScroll>();
 			infiniteScroll.onUpdateItem.AddListener(OnUpdateItem);
 			GetComponentInParent<ScrollRect>().movementType = ScrollRect.MovementType.Clamped;
@@ -33,7 +36,7 @@ namespace Imnyeong
 			{
 				obj.SetActive(true);
 				var item = obj.GetComponentInChildren<FoodItem>();
-				item.UpdateItem(itemCount);
+				item.UpdateItem(foods[itemCount]);
 			}
 		}
 	}

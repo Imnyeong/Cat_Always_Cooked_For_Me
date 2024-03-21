@@ -39,8 +39,6 @@ namespace Imnyeong
         #region Unity Life Cycle
         private void Awake()
         {
-            DontDestroyOnLoad(this);
-
             if (instance == null)
             {
                 instance = this;
@@ -58,7 +56,13 @@ namespace Imnyeong
             inventoryButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Inventory); });
         }
 
-        public void ShoewView()
+        public void RefreshUI()
+        {
+            moneyText.text = GameManager.instance.localDataBase.currentMoney.ToString();
+            cashText.text = GameManager.instance.localDataBase.currentCash.ToString();
+            churText.text = GameManager.instance.localDataBase.currentChur.ToString();
+        }
+        public void ShowView()
         {
 
         }
