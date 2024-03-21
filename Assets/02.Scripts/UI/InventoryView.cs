@@ -42,7 +42,7 @@ namespace Imnyeong
         }
         private void Init()
         {
-            closeButton.onClick.AddListener(HideView);
+            closeButton.onClick.AddListener(this.HideView);
 
             ingredientToggle.onValueChanged.AddListener(delegate
             {

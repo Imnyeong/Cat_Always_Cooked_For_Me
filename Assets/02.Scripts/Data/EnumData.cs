@@ -9,7 +9,7 @@ namespace Imnyeong
     public enum ViewType
     {
         Inventory,
-        Food,
+        Cook,
         Store,
         Gacha
     }

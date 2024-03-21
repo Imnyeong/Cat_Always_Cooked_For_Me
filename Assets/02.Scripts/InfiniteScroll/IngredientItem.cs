@@ -6,11 +6,11 @@ namespace Imnyeong
     public class IngredientItem : MonoBehaviour
     {
 		[SerializeField]
-		Image thumbnail;
+		private Image thumbnail;
 		[SerializeField]
-		Text nameText;
+		private Text nameText;
 		[SerializeField]
-		Text countText;
+		private Text countText;
 
 		private Image ingredientThmbnail;
 		private string ingredientName;

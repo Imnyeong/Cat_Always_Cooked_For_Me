@@ -53,7 +53,9 @@ namespace Imnyeong
 
         private void Init()
         {
+            RefreshUI();
             inventoryButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Inventory); });
+            cookButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Cook); });
         }
 
         public void RefreshUI()
@@ -61,10 +63,6 @@ namespace Imnyeong
             moneyText.text = GameManager.instance.localDataBase.currentMoney.ToString();
             cashText.text = GameManager.instance.localDataBase.currentCash.ToString();
             churText.text = GameManager.instance.localDataBase.currentChur.ToString();
-        }
-        public void ShowView()
-        {
-
         }
     }
 }

@@ -66,8 +66,6 @@ namespace Imnyeong
         #region Food
         public bool CheckIngredients(FoodData _food)
         {
-            int checkCount = 0;
-
             for (int i = 0; i < _food.requiredIngredients.Count; i++)
             {
                 currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _food.requiredIngredients[i]);
@@ -78,30 +76,25 @@ namespace Imnyeong
                     currentIngredient = null;
                     return false;
                 }
-                else 
-                {
-                    checkCount++;
-                }
             }
-            if(checkCount == _food.requiredIngredients.Count)
+            return true;
+        }
+        public void UseIngredient(FoodData _food)
+        {
+            for (int i = 0; i < _food.requiredIngredients.Count; i++)
             {
-                for (int i = 0; i < _food.requiredIngredients.Count; i++)
+                currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _food.requiredIngredients[i]);
+            
+                if (currentIngredient.count == _food.requiredCounts[i])
                 {
-                    currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _food.requiredIngredients[i]);
-
-                    if (currentIngredient.count == _food.requiredCounts[i])
-                    {
-                        localDataBase.ingredientInventory.Remove(currentIngredient);
-                    }
-                    else
-                    {
-                        currentIngredient.count -= _food.requiredCounts[i];
-                    }
+                    localDataBase.ingredientInventory.Remove(currentIngredient);
                 }
-                Debug.Log("夸府 己傍");
-                return true;
+                else
+                {
+                    currentIngredient.count -= _food.requiredCounts[i];
+                }
             }
-            return false;
+            Debug.Log("夸府 己傍");
         }
         public bool FindFood(FoodData _data)
         {
@@ -112,6 +105,8 @@ namespace Imnyeong
         {
             if(!CheckIngredients(_data))
                 return;
+
+            UseIngredient(_data);
 
             if (FindFood(_data))
             {
