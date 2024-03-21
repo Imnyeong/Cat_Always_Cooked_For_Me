@@ -48,3 +48,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 88de0003159a007419d918f301ebce30, type: 2}
   FoodDatas:
   - {fileID: 11400000, guid: d1b168325ec780d48ae4e8567e7ab5a4, type: 2}
+  - {fileID: 11400000, guid: e4598a1295833e7499154351296bd169, type: 2}

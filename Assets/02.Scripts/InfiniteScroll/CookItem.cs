@@ -26,8 +26,8 @@ namespace Imnyeong
 		{
 			foodThmbnail = _data.thumbnail;
 			foodName = _data.foodName;
-			cookButton.interactable = GameManager.instance.CheckIngredients(_data);
-			cookText.text = cookButton.interactable ? "요리 가능" : "불가능";
+			CheckIngredient(_data);
+
 			SetItem(foodThmbnail, foodName, delegate { OnClickRecipeButton(_data); }, delegate { OnClickCookButton(_data); });
 		}
 
@@ -57,8 +57,13 @@ namespace Imnyeong
 		public void OnClickCookButton(FoodData _data)
 		{
 			GameManager.instance.GetFood(_data);
+			CheckIngredient(_data);
+		}
+
+		public void CheckIngredient(FoodData _data)
+        {
 			cookButton.interactable = GameManager.instance.CheckIngredients(_data);
-			cookText.text = cookButton.interactable ? "요리 가능" : "불가능";
+			cookText.text = cookButton.interactable ? "요리 가능" : "재료 부족";
 		}
 	}
 }
