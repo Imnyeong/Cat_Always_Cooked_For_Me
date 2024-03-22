@@ -123,7 +123,7 @@ namespace Imnyeong
             currentIngredient = null;
             currentFood = null;
         }
-        public void SellFood(FoodData _data)
+        public void SellFood(FoodData _data, int _count)
         {
             if (!FindFood(_data))
             {
@@ -131,13 +131,13 @@ namespace Imnyeong
             }
             else
             {
-                if (currentFood.count > 1)
+                if (currentFood.count  == _count)
                 {
-                    currentFood.count--;
+                    localDataBase.foodInventory.Remove(currentFood);
                 }
                 else
                 {
-                    localDataBase.foodInventory.Remove(currentFood);
+                    currentFood.count -= _count;
                 }
             }
             currentFood = null;
