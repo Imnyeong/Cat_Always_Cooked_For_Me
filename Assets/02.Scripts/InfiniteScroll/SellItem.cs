@@ -39,6 +39,7 @@ namespace Imnyeong
 		public void SellFood(Food _food, int _count)
         {
             GameManager.instance.SellFood(_food.food, _count);
+			foodCount = _food.count;
 
 			if (foodCount == _count)
 				GetComponentInParent<SellController>().Refresh();
