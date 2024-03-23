@@ -56,6 +56,7 @@ namespace Imnyeong
             RefreshUI();
             inventoryButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Inventory); });
             cookButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Cook); });
+            storeButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Store); });
         }
 
         public void RefreshUI()

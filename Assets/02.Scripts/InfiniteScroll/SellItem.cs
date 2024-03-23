@@ -25,7 +25,7 @@ namespace Imnyeong
 			foodCount = _food.count;
 
 			sellButton.onClick.RemoveAllListeners();
-			sellButton.onClick.AddListener(delegate { SellFood(_food.food, 0); });
+			sellButton.onClick.AddListener(delegate { SellFood(_food, 1); });
 
 			SetItem(foodThmbnail, foodName, foodCount);
 		}
@@ -36,11 +36,14 @@ namespace Imnyeong
 			nameText.text = _name;
 			countText.text = _count.ToString();
 		}
-
-		public void SellFood(FoodData _food, int _count)
+		public void SellFood(Food _food, int _count)
         {
-			GameManager.instance.SellFood(_food, _count);
-			GameManager.instance.GetMoney(_food.price * _count);
+            GameManager.instance.SellFood(_food.food, _count);
+
+			if (foodCount == _count)
+				GetComponentInParent<SellController>().Refresh();
+			else
+				SetItem(_food.food.thumbnail, _food.food.foodName, _food.count);
         }
-	}
+    }
 }

@@ -125,8 +125,9 @@ namespace Imnyeong
         }
         public void SellFood(FoodData _data, int _count)
         {
-            if (!FindFood(_data))
+            if (!FindFood(_data) || currentFood.count < _count)
             {
+                Debug.Log("옳지 않은 판매");
                 return;
             }
             else
@@ -139,6 +140,7 @@ namespace Imnyeong
                 {
                     currentFood.count -= _count;
                 }
+                GetMoney(_data.price * _count);
             }
             currentFood = null;
         }
@@ -155,6 +157,7 @@ namespace Imnyeong
             {
                 localDataBase.currentMoney += _price;
             }
+            UIManager.instance.RefreshUI();
         }
         public bool LoseMoney(int _price)
         {
@@ -165,6 +168,7 @@ namespace Imnyeong
             else
             {
                 localDataBase.currentMoney -= _price;
+                UIManager.instance.RefreshUI();
                 return true;
             }
         }
