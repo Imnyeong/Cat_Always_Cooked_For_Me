@@ -13,4 +13,10 @@ namespace Imnyeong
         Store,
         Gacha
     }
+    public enum PopupType
+    {
+        OneButton,
+        TwoButton,
+        TwoButtonCount
+    }
 }
