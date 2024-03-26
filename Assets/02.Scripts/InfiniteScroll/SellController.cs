@@ -39,11 +39,5 @@ namespace Imnyeong
 				item.UpdateItem(foods[itemCount]);
 			}
 		}
-
-		public void Refresh()
-        {
-			this.gameObject.SetActive(false);
-			this.gameObject.SetActive(true);
-        }
 	}
 }

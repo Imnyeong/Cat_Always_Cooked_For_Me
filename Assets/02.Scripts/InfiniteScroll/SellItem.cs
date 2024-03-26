@@ -13,21 +13,15 @@ namespace Imnyeong
 		private Text countText;
 		[SerializeField]
 		private Button sellButton;
-
-		private Image foodThmbnail;
-		private string foodName;
-		private int foodCount;
+		[SerializeField]
+		private Text sellText;
 
 		public void UpdateItem(Food _food)
 		{
-			foodThmbnail = _food.food.thumbnail;
-			foodName = _food.food.foodName;
-			foodCount = _food.count;
-
 			sellButton.onClick.RemoveAllListeners();
 			sellButton.onClick.AddListener(delegate { SellFood(_food, 1); });
 
-			SetItem(foodThmbnail, foodName, foodCount);
+			SetItem(_food.food.thumbnail, _food.food.foodName, _food.count);
 		}
 
 		public void SetItem(Image _image, string _name, int _count)
@@ -35,16 +29,13 @@ namespace Imnyeong
 			thumbnail = _image;
 			nameText.text = _name;
 			countText.text = _count.ToString();
+			sellButton.interactable = _count != 0;
+			sellText.text = sellButton.interactable ? "판매" : "재고 소진";
 		}
 		public void SellFood(Food _food, int _count)
         {
             GameManager.instance.SellFood(_food.food, _count);
-			foodCount = _food.count;
-
-			if (foodCount == _count)
-				GetComponentInParent<SellController>().Refresh();
-			else
-				SetItem(_food.food.thumbnail, _food.food.foodName, _food.count);
+			SetItem(_food.food.thumbnail, _food.food.foodName, _food.count);
         }
     }
 }

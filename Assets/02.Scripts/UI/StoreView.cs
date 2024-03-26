@@ -37,6 +37,7 @@ namespace Imnyeong
         }
         public void OnDisable()
         {
+            GameManager.instance.CleanFoodInventory();
             buyTab.SetActive(false);
             sellTab.SetActive(false);
         }

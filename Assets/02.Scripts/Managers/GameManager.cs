@@ -132,17 +132,25 @@ namespace Imnyeong
             }
             else
             {
-                if (currentFood.count  == _count)
-                {
-                    localDataBase.foodInventory.Remove(currentFood);
-                }
-                else
-                {
-                    currentFood.count -= _count;
-                }
+                //if (currentFood.count  == _count)
+                //{
+                //    localDataBase.foodInventory.Remove(currentFood);
+                //}
+                //else
+                //{
+                currentFood.count -= _count;
+                //}
                 GetMoney(_data.price * _count);
             }
             currentFood = null;
+        }
+
+        public void CleanFoodInventory()
+        {
+            for(int i = 0 ; i < localDataBase.foodInventory.Count ; i++)
+            {
+                localDataBase.foodInventory.RemoveAll(x => x.count == 0);
+            }
         }
         #endregion
         #region Money
