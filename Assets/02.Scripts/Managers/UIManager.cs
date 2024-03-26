@@ -33,7 +33,7 @@ namespace Imnyeong
         [Header("Managers")]
         [SerializeField]
         private ViewManager viewManager;
-        //public GameObject[] popupsLarge;
+        public PopupManager popupManagerL;
         //public GameObject[] popupsSmall;
 
         #region Unity Life Cycle

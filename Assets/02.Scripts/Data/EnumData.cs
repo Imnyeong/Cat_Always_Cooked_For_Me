@@ -17,6 +17,7 @@ namespace Imnyeong
     {
         OneButton,
         TwoButton,
-        TwoButtonCount
+        TwoButtonCount,
+        CatInfo
     }
 }

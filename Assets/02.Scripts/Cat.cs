@@ -16,6 +16,7 @@ namespace Imnyeong
         [field: SerializeField] private int currentWorkPoint { get; set; }
         [field: SerializeField] private Text textWorkPoint;
         [field: SerializeField] private Slider workSlider;
+        [field: SerializeField] private Button infoButton;
 
         private float workDelay { get; set; } = 1.0f;
         private Coroutine coroutine = null;
@@ -23,12 +24,16 @@ namespace Imnyeong
         private void Start()
         {
             coroutine = StartCoroutine(WorkCoroutine());
+            infoButton.onClick.AddListener(OnClickButton);
         }
         public void OnClickCharacter()
         {
             IncreaseWorkPoint();
         }
-
+        public void OnClickButton()
+        {
+            UIManager.instance.popupManagerL.ShowCatInfoPopup(this);
+        }
         //public void StopCoroutine()
         //{
         //    if (coroutine != null)

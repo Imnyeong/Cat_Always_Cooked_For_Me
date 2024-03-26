@@ -6,9 +6,9 @@ namespace Imnyeong
     {
         public virtual PopupType popupType { get; }
 
-        public void ShowPopup(PopupType _popupType)
+        public void ShowPopup()
         {
-            this.gameObject.SetActive(popupType == _popupType);
+            this.gameObject.SetActive(true);
         }
         public void HidePopup()
         {
