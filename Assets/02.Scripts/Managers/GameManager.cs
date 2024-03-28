@@ -47,14 +47,14 @@ namespace Imnyeong
                 if (FindIngredient(currentIngredientData))
                 {
                     currentIngredient.count++;
-                    Debug.Log($"currentIngredient = {currentIngredient.ingredient.abilityType}, {currentIngredient.ingredient.abilityValue}, currentCount = {currentIngredient.count}");
+                    //Debug.Log($"currentIngredient = {currentIngredient.ingredient.abilityType}, {currentIngredient.ingredient.abilityValue}, currentCount = {currentIngredient.count}");
                 }
                 else
                 {
                     Ingredient newIngredient = new Ingredient();
                     newIngredient.ingredient = currentIngredientData;
                     newIngredient.count = 1;
-                    Debug.Log($"newIngredient = {newIngredient.ingredient.abilityType}, {newIngredient.ingredient.abilityValue}, newCount = {newIngredient.count}");
+                    //Debug.Log($"newIngredient = {newIngredient.ingredient.abilityType}, {newIngredient.ingredient.abilityValue}, newCount = {newIngredient.count}");
                     localDataBase.ingredientInventory.Add(newIngredient);
                 }
             }

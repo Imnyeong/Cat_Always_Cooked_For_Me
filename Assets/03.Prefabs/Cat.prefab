@@ -287,13 +287,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd3f3ad9941045c588995cfcda130e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <abilityType>k__BackingField: 2
-  <abilityValue>k__BackingField: 1
-  <maxWorkPoint>k__BackingField: 10
-  <currentWorkPoint>k__BackingField: 0
+  thumbnail: {fileID: 4373423052111577868}
+  abilityType: 0
+  abilityValue: 0
+  maxWorkPoint: 0
+  currentWorkPoint: 0
   textWorkPoint: {fileID: 4373423053058444380}
   workSlider: {fileID: 7427914769986230196}
   infoButton: {fileID: 7659561887138756034}
+  workDelay: 1
 --- !u!95 &2184478546828535356
 Animator:
   serializedVersion: 3
@@ -562,7 +564,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5653270057689569140}
   m_HandleRect: {fileID: 0}

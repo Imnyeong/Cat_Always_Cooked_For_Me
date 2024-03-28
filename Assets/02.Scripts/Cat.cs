@@ -7,18 +7,20 @@ namespace Imnyeong
 {
     public class Cat : MonoBehaviour
     {
-        [field: Header("Ability")]
-        [field: SerializeField] private AbilityType abilityType { get; set; }
-        [field: SerializeField] private int abilityValue { get; set; }
+        [SerializeField] public Image thumbnail;
 
-        [field: Header("Work")]
-        [field: SerializeField] private int maxWorkPoint { get; set; }
-        [field: SerializeField] private int currentWorkPoint { get; set; }
-        [field: SerializeField] private Text textWorkPoint;
-        [field: SerializeField] private Slider workSlider;
-        [field: SerializeField] private Button infoButton;
+        [Header("Ability")]
+        [SerializeField] public AbilityType abilityType;
+        [SerializeField] public int abilityValue;
 
-        private float workDelay { get; set; } = 1.0f;
+        [Header("Work")]
+        [SerializeField] public int maxWorkPoint;
+        [SerializeField] public int currentWorkPoint;
+        [SerializeField] private Text textWorkPoint;
+        [SerializeField] private Slider workSlider;
+        [SerializeField] private Button infoButton;
+
+        public float workDelay = 1.0f;
         private Coroutine coroutine = null;
 
         private void Start()
