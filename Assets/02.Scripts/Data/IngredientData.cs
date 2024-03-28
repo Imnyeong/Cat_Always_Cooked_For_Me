@@ -12,6 +12,8 @@ namespace Imnyeong
         public string ingredientName;
         public string description;
     }
+
+    [System.Serializable]
     public class Ingredient
     {
         public IngredientData ingredient;

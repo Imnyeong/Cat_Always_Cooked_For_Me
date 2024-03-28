@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -179,6 +180,40 @@ namespace Imnyeong
                 UIManager.instance.RefreshUI();
                 return true;
             }
+        }
+        #endregion
+        #region Save
+        public void SaveData()
+        {
+            SaveData saveData = new SaveData()
+            {
+                catList = localDataBase.catList,
+                ingredientInventory = localDataBase.ingredientInventory,
+                foodInventory = localDataBase.foodInventory,
+                currentMoney = localDataBase.currentMoney,
+                currentCash = localDataBase.currentCash,
+                currentChur = localDataBase.currentChur,
+                savedTime = DateTime.Now
+            };
+
+            PlayerPrefs.SetString("saveData", JsonUtility.ToJson(saveData));
+            //localDataBase.ShowInventory();
+        }
+
+        public void LoadData()
+        {
+            string saveDataString = PlayerPrefs.GetString("saveData");
+            SaveData saveData = JsonUtility.FromJson<SaveData>(saveDataString);
+
+            localDataBase.catList = saveData.catList;
+            localDataBase.ingredientInventory = saveData.ingredientInventory;
+            localDataBase.foodInventory = saveData.foodInventory;
+            localDataBase.currentMoney = saveData.currentMoney;
+            localDataBase.currentCash = saveData.currentCash;
+            localDataBase.currentChur = saveData.currentChur;
+
+            UIManager.instance.RefreshUI();
+            //localDataBase.ShowInventory();
         }
         #endregion
     }

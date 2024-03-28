@@ -15,6 +15,8 @@ namespace Imnyeong
         public List<IngredientData> requiredIngredients;
         public List<int> requiredCounts;
     }
+
+    [System.Serializable]
     public class Food
     {
         public FoodData food;
