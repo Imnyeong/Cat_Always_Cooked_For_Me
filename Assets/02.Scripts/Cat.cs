@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Imnyeong
 {
+    [System.Serializable]
     public class Cat : MonoBehaviour
     {
         [SerializeField] public Image thumbnail;
@@ -16,22 +17,48 @@ namespace Imnyeong
         [Header("Work")]
         [SerializeField] public int maxWorkPoint;
         [SerializeField] public int currentWorkPoint;
-        [SerializeField] private Text textWorkPoint;
+        //[SerializeField] private Text textWorkPoint;
         [SerializeField] private Slider workSlider;
         [SerializeField] private Button infoButton;
 
         public float workDelay = 1.0f;
         private Coroutine coroutine = null;
 
-        private void Start()
+        public void SetInfo(CatData _cat)
         {
+            this.gameObject.SetActive(true);
+            infoButton.onClick.RemoveAllListeners();
+
+            //thumbnail = _cat.thumbnail;
+
+            abilityType = _cat.abilityType;
+            abilityValue = _cat.abilityValue;
+
+            maxWorkPoint = _cat.maxWorkPoint;
+            currentWorkPoint = _cat.currentWorkPoint;
+
+            workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);
+
             coroutine = StartCoroutine(WorkCoroutine());
             infoButton.onClick.AddListener(OnClickInfo);
         }
-        public void SetInfo(Cat _cat)
-        {
 
+        public void SellCat()
+        {
+            infoButton.onClick.RemoveAllListeners();
+            StopCoroutine();
+            this.gameObject.SetActive(false);
         }
+
+        public void StopCoroutine()
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+        }
+
         public void OnClickCharacter()
         {
             IncreaseWorkPoint();

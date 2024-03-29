@@ -5,7 +5,7 @@ namespace Imnyeong
 {
     public class SaveData
     {
-        public List<Cat> catList = new List<Cat>();
+        public List<CatData> catList;
         public List<Ingredient> ingredientInventory = new List<Ingredient>();
         public List<Food> foodInventory = new List<Food>();
         public int currentMoney;

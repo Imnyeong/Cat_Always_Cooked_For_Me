@@ -204,12 +204,12 @@ namespace Imnyeong
         {
             string saveDataString = PlayerPrefs.GetString("saveData");
             string saveTimeString = PlayerPrefs.GetString("saveTime");
-            
-            if (saveTimeString == null)
+
+            if (saveTimeString == null || saveDataString == null)
                 return;
 
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveDataString);
-
+            
             localDataBase.catList = saveData.catList;
             localDataBase.ingredientInventory = saveData.ingredientInventory;
             localDataBase.foodInventory = saveData.foodInventory;
@@ -219,21 +219,35 @@ namespace Imnyeong
 
             TimeSpan timeSpan = DateTime.Now - DateTime.Parse(saveTimeString);
 
-            Debug.Log("저장 시간 = " + DateTime.Parse(saveTimeString).ToString());
-            Debug.Log("현재 시간 = " + DateTime.Now.ToString());
-            Debug.Log("지난 시간 = " + timeSpan.ToString());
-            Debug.Log("초로 계산하면 = " + ((int)timeSpan.TotalSeconds).ToString());
-
-            for (int i = 0; i < saveData.catList.Count; i++)
+            UIManager.instance.SetCats(saveData.catList);
+            
+            for (int i = 0; i < UIManager.instance.cats.Count; i++)
             {
-                saveData.catList[i].CalculateWorkPoint((int)(timeSpan.TotalSeconds));
+                if (UIManager.instance.cats[i].gameObject.activeSelf)
+                    UIManager.instance.cats[i].CalculateWorkPoint((int)(timeSpan.TotalSeconds));
             }
             UIManager.instance.RefreshUI();
         }
         public void SaveCat()
         {
-            localDataBase.catList = UIManager.instance.cats;
+            localDataBase.catList.Clear();
+            for (int i = 0; i < UIManager.instance.cats.Count; i++)
+            {
+                if (UIManager.instance.cats[i].gameObject.activeSelf)
+                {
+                    CatData tmpData = new CatData()
+                    {
+                        abilityType = UIManager.instance.cats[i].abilityType,
+                        abilityValue = UIManager.instance.cats[i].abilityValue,
+                        maxWorkPoint = UIManager.instance.cats[i].maxWorkPoint,
+                        currentWorkPoint = UIManager.instance.cats[i].currentWorkPoint,
+                        workDelay = UIManager.instance.cats[i].workDelay
+                    };
+                    localDataBase.catList.Add(tmpData);
+                }
+            }
         }
+       
         #endregion
     }
 }

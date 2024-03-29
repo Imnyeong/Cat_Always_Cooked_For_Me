@@ -65,5 +65,13 @@ namespace Imnyeong
             cashText.text = GameManager.instance.localDataBase.currentCash.ToString();
             churText.text = GameManager.instance.localDataBase.currentChur.ToString();
         }
+
+        public void SetCats(List<CatData> _data)
+        {
+            for(int i = 0 ; i < _data.Count ; i++)
+            {
+                cats[i].SetInfo(_data[i]);
+            }
+        }
     }
 }
