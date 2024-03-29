@@ -25,10 +25,5 @@ namespace Imnyeong
                 Debug.Log($"음식 이름 = {foodInventory[i].food} 개수 {foodInventory[i].count}");
             }
         }
-
-        //public void SetInventory(SaveData _data)
-        //{
-        //    catList = _data
-        //}
     }
 }

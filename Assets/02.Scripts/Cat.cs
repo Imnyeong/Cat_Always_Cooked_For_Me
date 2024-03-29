@@ -26,29 +26,20 @@ namespace Imnyeong
         private void Start()
         {
             coroutine = StartCoroutine(WorkCoroutine());
-            infoButton.onClick.AddListener(OnClickButton);
+            infoButton.onClick.AddListener(OnClickInfo);
+        }
+        public void SetInfo(Cat _cat)
+        {
+
         }
         public void OnClickCharacter()
         {
             IncreaseWorkPoint();
         }
-        public void OnClickButton()
+        public void OnClickInfo()
         {
             UIManager.instance.popupManagerL.ShowCatInfoPopup(this);
         }
-        //public void StopCoroutine()
-        //{
-        //    if (coroutine != null)
-        //    {
-        //        StopCoroutine(coroutine);
-        //        coroutine = null;
-        //    }
-        //    else
-        //    {
-        //        coroutine = StartCoroutine(WorkCoroutine());
-        //    }
-        //}
-
         private IEnumerator WorkCoroutine()
         {
             yield return new WaitForSecondsRealtime(workDelay);
@@ -66,6 +57,16 @@ namespace Imnyeong
             }
             workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);
             //textWorkPoint.text = $"{currentWorkPoint} / {maxWorkPoint}";
+        }
+        public void CalculateWorkPoint(int _sec)
+        {
+            int count = _sec / maxWorkPoint;
+            int remain = _sec % maxWorkPoint;
+
+            GameManager.instance.GetIngredient(abilityType, abilityValue, count);
+
+            currentWorkPoint = remain;
+            workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);
         }
     }
 }

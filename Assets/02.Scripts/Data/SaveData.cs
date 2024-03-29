@@ -11,6 +11,5 @@ namespace Imnyeong
         public int currentMoney;
         public int currentCash;
         public int currentChur;
-        public DateTime savedTime;
     }
 }

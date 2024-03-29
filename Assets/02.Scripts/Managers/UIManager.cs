@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,8 +8,7 @@ namespace Imnyeong
     {
         public static UIManager instance;
 
-        [field: SerializeField]
-        private Cat[] cats { get; set; }
+        public List<Cat> cats;
 
         [Header("Top UI")]
         [SerializeField]

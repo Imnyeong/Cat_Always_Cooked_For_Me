@@ -4608,7 +4608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1163190927e0d6542968e37891abfc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <cats>k__BackingField:
+  cats:
   - {fileID: 1114424967}
   - {fileID: 2063010915}
   - {fileID: 1635837318}

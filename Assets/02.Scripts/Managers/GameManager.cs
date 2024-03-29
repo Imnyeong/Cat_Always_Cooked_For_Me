@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Imnyeong
@@ -41,20 +40,20 @@ namespace Imnyeong
             currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _data);
             return currentIngredient != null;
         }
-        public void GetIngredient(AbilityType _type, int _value)
+        public void GetIngredient(AbilityType _type, int _value, int _count = 1)
         {
             if (FindIngredientData(_type, _value) != null)
             {
                 if (FindIngredient(currentIngredientData))
                 {
-                    currentIngredient.count++;
+                    currentIngredient.count += _count;
                     //Debug.Log($"currentIngredient = {currentIngredient.ingredient.abilityType}, {currentIngredient.ingredient.abilityValue}, currentCount = {currentIngredient.count}");
                 }
                 else
                 {
                     Ingredient newIngredient = new Ingredient();
                     newIngredient.ingredient = currentIngredientData;
-                    newIngredient.count = 1;
+                    newIngredient.count = _count;
                     //Debug.Log($"newIngredient = {newIngredient.ingredient.abilityType}, {newIngredient.ingredient.abilityValue}, newCount = {newIngredient.count}");
                     localDataBase.ingredientInventory.Add(newIngredient);
                 }
@@ -185,6 +184,8 @@ namespace Imnyeong
         #region Save
         public void SaveData()
         {
+            SaveCat();
+
             SaveData saveData = new SaveData()
             {
                 catList = localDataBase.catList,
@@ -193,16 +194,20 @@ namespace Imnyeong
                 currentMoney = localDataBase.currentMoney,
                 currentCash = localDataBase.currentCash,
                 currentChur = localDataBase.currentChur,
-                savedTime = DateTime.Now
             };
 
             PlayerPrefs.SetString("saveData", JsonUtility.ToJson(saveData));
-            //localDataBase.ShowInventory();
+            PlayerPrefs.SetString("saveTime", DateTime.Now.ToString());
         }
 
         public void LoadData()
         {
             string saveDataString = PlayerPrefs.GetString("saveData");
+            string saveTimeString = PlayerPrefs.GetString("saveTime");
+            
+            if (saveTimeString == null)
+                return;
+
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveDataString);
 
             localDataBase.catList = saveData.catList;
@@ -212,8 +217,22 @@ namespace Imnyeong
             localDataBase.currentCash = saveData.currentCash;
             localDataBase.currentChur = saveData.currentChur;
 
+            TimeSpan timeSpan = DateTime.Now - DateTime.Parse(saveTimeString);
+
+            Debug.Log("저장 시간 = " + DateTime.Parse(saveTimeString).ToString());
+            Debug.Log("현재 시간 = " + DateTime.Now.ToString());
+            Debug.Log("지난 시간 = " + timeSpan.ToString());
+            Debug.Log("초로 계산하면 = " + ((int)timeSpan.TotalSeconds).ToString());
+
+            for (int i = 0; i < saveData.catList.Count; i++)
+            {
+                saveData.catList[i].CalculateWorkPoint((int)(timeSpan.TotalSeconds));
+            }
             UIManager.instance.RefreshUI();
-            //localDataBase.ShowInventory();
+        }
+        public void SaveCat()
+        {
+            localDataBase.catList = UIManager.instance.cats;
         }
         #endregion
     }
