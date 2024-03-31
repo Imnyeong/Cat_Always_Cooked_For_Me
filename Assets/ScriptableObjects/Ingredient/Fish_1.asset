@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2938a611419124ba8d013486f8b29f, type: 3}
   m_Name: Fish_1
   m_EditorClassIdentifier: 
-  thumbnail: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 8cea1f0de9ed5494ea1cb842077ad35a, type: 3}
   abilityType: 2
   abilityValue: 1
   ingredientName: "\uBB3C\uACE0\uAE30"

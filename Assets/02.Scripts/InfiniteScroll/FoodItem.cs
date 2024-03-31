@@ -12,17 +12,17 @@ namespace Imnyeong
 		[SerializeField]
 		private Text countText;
 
-		private Image foodThmbnail;
+		private Sprite foodThmbnail;
 		private string foodName;
 		private int foodCount;
 
 		public void UpdateItem(Food _food)
 		{
-			foodThmbnail.sprite = _food.food.thumbnail;
+			foodThmbnail = _food.food.thumbnail;
 			foodName = _food.food.foodName;
 			foodCount = _food.count;
 
-			SetItem(foodThmbnail.sprite, foodName, foodCount);
+			SetItem(foodThmbnail, foodName, foodCount);
 		}
 
 		public void SetItem(Sprite _image, string _name, int _count)

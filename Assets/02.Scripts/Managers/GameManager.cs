@@ -205,7 +205,7 @@ namespace Imnyeong
             string saveDataString = PlayerPrefs.GetString("saveData");
             string saveTimeString = PlayerPrefs.GetString("saveTime");
 
-            if (saveTimeString == null || saveDataString == null)
+            if (saveTimeString == string.Empty || saveDataString == string.Empty)
                 return;
 
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveDataString);

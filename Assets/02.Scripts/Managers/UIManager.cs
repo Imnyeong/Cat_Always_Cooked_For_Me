@@ -56,7 +56,7 @@ namespace Imnyeong
             inventoryButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Inventory); });
             cookButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Cook); });
             storeButton.onClick.AddListener(delegate { viewManager.ShowView(ViewType.Store); });
-            gachaButton.onClick.AddListener(delegate { });
+            gachaButton.onClick.AddListener(delegate { GameManager.instance.SaveData(); });
         }
 
         public void RefreshUI()

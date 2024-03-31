@@ -19,12 +19,12 @@ namespace Imnyeong
 		[SerializeField]
 		private Button cookButton;
 
-		private Image foodThmbnail;
+		private Sprite foodThmbnail;
 		private string foodName;
 		FoodData foodData;
 		public void UpdateItem(FoodData _data)
 		{
-			foodThmbnail.sprite = _data.thumbnail;
+			foodThmbnail = _data.thumbnail;
 			foodName = _data.foodName;
 			foodData = _data;
 
@@ -33,12 +33,12 @@ namespace Imnyeong
 			SetItem(foodThmbnail, foodName, delegate { OnClickRecipeButton(_data); }, delegate { OnClickCookButton(_data); });
 		}
 
-		public void SetItem(Image _image, string _name, UnityAction _recipeAction, UnityAction _cookAction)
+		public void SetItem(Sprite _image, string _name, UnityAction _recipeAction, UnityAction _cookAction)
 		{
 			recipeButton.onClick.RemoveAllListeners();
 			cookButton.onClick.RemoveAllListeners();
 
-			thumbnail = _image;
+			thumbnail.sprite = _image;
 			nameText.text = _name;
 
 			recipeButton.onClick.AddListener(_recipeAction);
