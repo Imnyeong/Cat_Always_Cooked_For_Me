@@ -7,7 +7,7 @@ namespace Imnyeong
     [CreateAssetMenu]
     public class FoodData : ScriptableObject
     {
-        public Image thumbnail;
+        public Sprite thumbnail;
         public int price;
         public string foodName;
         public string description;

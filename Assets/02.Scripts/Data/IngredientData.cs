@@ -6,7 +6,7 @@ namespace Imnyeong
     [CreateAssetMenu]
     public class IngredientData : ScriptableObject
     {
-        public Image thumbnail;
+        public Sprite thumbnail;
         public AbilityType abilityType;
         public int abilityValue;
         public string ingredientName;

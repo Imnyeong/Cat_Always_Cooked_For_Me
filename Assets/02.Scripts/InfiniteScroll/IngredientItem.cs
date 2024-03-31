@@ -18,16 +18,16 @@ namespace Imnyeong
 
 		public void UpdateItem(Ingredient _ingredient)
 		{
-			ingredientThmbnail = _ingredient.ingredient.thumbnail;
+			ingredientThmbnail.sprite = _ingredient.ingredient.thumbnail;
 			ingredientName = _ingredient.ingredient.ingredientName;
 			ingredientCount = _ingredient.count;
 
-			SetItem(ingredientThmbnail, ingredientName, ingredientCount);
+			SetItem(ingredientThmbnail.sprite, ingredientName, ingredientCount);
 		}
 
-		public void SetItem(Image _image, string _name, int _count)
+		public void SetItem(Sprite _image, string _name, int _count)
         {
-			thumbnail = _image;
+			thumbnail.sprite = _image;
 			nameText.text = _name;
 			countText.text = _count.ToString();
 		}

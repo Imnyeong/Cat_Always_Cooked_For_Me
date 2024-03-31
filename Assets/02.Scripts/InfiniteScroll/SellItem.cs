@@ -24,9 +24,9 @@ namespace Imnyeong
 			SetItem(_food.food.thumbnail, _food.food.foodName, _food.count);
 		}
 
-		public void SetItem(Image _image, string _name, int _count)
+		public void SetItem(Sprite _image, string _name, int _count)
         {
-			thumbnail = _image;
+			thumbnail.sprite = _image;
 			nameText.text = _name;
 			countText.text = _count.ToString();
 			sellButton.interactable = _count != 0;

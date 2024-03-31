@@ -24,7 +24,7 @@ namespace Imnyeong
 		FoodData foodData;
 		public void UpdateItem(FoodData _data)
 		{
-			foodThmbnail = _data.thumbnail;
+			foodThmbnail.sprite = _data.thumbnail;
 			foodName = _data.foodName;
 			foodData = _data;
 
