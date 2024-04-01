@@ -184,8 +184,7 @@ namespace Imnyeong
         #region Save
         public void SaveData()
         {
-            SaveCat();
-
+            //SaveCat();
             SaveData saveData = new SaveData()
             {
                 catList = localDataBase.catList,
@@ -199,7 +198,6 @@ namespace Imnyeong
             PlayerPrefs.SetString("saveData", JsonUtility.ToJson(saveData));
             PlayerPrefs.SetString("saveTime", DateTime.Now.ToString());
         }
-
         public void LoadData()
         {
             string saveDataString = PlayerPrefs.GetString("saveData");
@@ -228,6 +226,8 @@ namespace Imnyeong
             }
             UIManager.instance.RefreshUI();
         }
+        #endregion
+        #region Cat
         public void SaveCat()
         {
             localDataBase.catList.Clear();
@@ -247,7 +247,31 @@ namespace Imnyeong
                 }
             }
         }
-       
+        public void GetCat(CatData _data)
+        {
+            for(int i = 0 ; i < UIManager.instance.cats.Count; i++)
+            {
+                if (UIManager.instance.cats[i].gameObject.activeSelf == false)
+                {
+                    UIManager.instance.cats[i].gameObject.SetActive(true);
+                    UIManager.instance.cats[i].SetInfo(_data);
+                    localDataBase.catList.Add(_data);
+                    break;
+                }
+            }
+        }
+        public void SellCat(int _index)
+        {
+            UIManager.instance.cats[_index].gameObject.SetActive(false);
+            localDataBase.catList.RemoveAt(_index);
+        }
         #endregion
+        //private void OnApplicationFocus(bool focus)
+        //{
+        //    if (focus)
+        //        SaveData();
+        //    else
+        //        LoadData();
+        //}
     }
 }
