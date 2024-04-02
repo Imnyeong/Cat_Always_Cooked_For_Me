@@ -4810,7 +4810,7 @@ MonoBehaviour:
   panel: {fileID: 940843225}
   thumbnail: {fileID: 2737580520033831863}
   closeButton: {fileID: 2138104090}
-  abilityType: {fileID: 1319472633}
+  ingredient: {fileID: 1319472633}
   abilityValue: {fileID: 1328717042}
   workPoint: {fileID: 1377828408}
 --- !u!1 &1528645731

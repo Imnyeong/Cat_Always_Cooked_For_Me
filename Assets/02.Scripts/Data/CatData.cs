@@ -4,6 +4,7 @@ namespace Imnyeong
     public class CatData
     {
         public AbilityType abilityType;
+        public int abilityIndex;
         public int abilityValue;
         public int maxWorkPoint;
         public int currentWorkPoint;

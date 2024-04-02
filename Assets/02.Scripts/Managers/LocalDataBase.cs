@@ -5,6 +5,9 @@ namespace Imnyeong
 {
     public class LocalDataBase : MonoBehaviour
     {
+        [Header("Player")]
+        public int playerLevel = 1;
+        public int playerExp = 0;
         [Header("Cat")]
         public List<CatData> catList = new List<CatData>();
         [Header("Inventory")]

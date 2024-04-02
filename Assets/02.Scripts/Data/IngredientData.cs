@@ -8,7 +8,7 @@ namespace Imnyeong
     {
         public Sprite thumbnail;
         public AbilityType abilityType;
-        public int abilityValue;
+        public int abilityIndex;
         public string ingredientName;
         public string description;
     }

@@ -28,7 +28,7 @@ namespace Imnyeong
         #region Ingredient
         public IngredientData FindIngredientData(AbilityType _type, int _value)
         {
-            currentIngredientData = gameData.ingredientDatas.Find(x => x.abilityType == _type && x.abilityValue == _value);
+            currentIngredientData = gameData.ingredientDatas.Find(x => x.abilityType == _type && x.abilityIndex == _value);
 
             if (currentIngredientData != null)
                 return currentIngredientData;
@@ -40,21 +40,19 @@ namespace Imnyeong
             currentIngredient = localDataBase.ingredientInventory.Find(x => x.ingredient == _data);
             return currentIngredient != null;
         }
-        public void GetIngredient(AbilityType _type, int _value, int _count = 1)
+        public void GetIngredient(AbilityType _type, int _index, int _value)
         {
-            if (FindIngredientData(_type, _value) != null)
+            if (FindIngredientData(_type, _index) != null)
             {
                 if (FindIngredient(currentIngredientData))
                 {
-                    currentIngredient.count += _count;
-                    //Debug.Log($"currentIngredient = {currentIngredient.ingredient.abilityType}, {currentIngredient.ingredient.abilityValue}, currentCount = {currentIngredient.count}");
+                    currentIngredient.count += _value;
                 }
                 else
                 {
                     Ingredient newIngredient = new Ingredient();
                     newIngredient.ingredient = currentIngredientData;
-                    newIngredient.count = _count;
-                    //Debug.Log($"newIngredient = {newIngredient.ingredient.abilityType}, {newIngredient.ingredient.abilityValue}, newCount = {newIngredient.count}");
+                    newIngredient.count = _value;
                     localDataBase.ingredientInventory.Add(newIngredient);
                 }
             }
@@ -238,6 +236,7 @@ namespace Imnyeong
                     CatData tmpData = new CatData()
                     {
                         abilityType = UIManager.instance.cats[i].abilityType,
+                        abilityIndex = UIManager.instance.cats[i].abilityIndex,
                         abilityValue = UIManager.instance.cats[i].abilityValue,
                         maxWorkPoint = UIManager.instance.cats[i].maxWorkPoint,
                         currentWorkPoint = UIManager.instance.cats[i].currentWorkPoint,

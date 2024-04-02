@@ -12,7 +12,8 @@ namespace Imnyeong
 
         [Header("Ability")]
         [SerializeField] public AbilityType abilityType;
-        [SerializeField] public int abilityValue;
+        [SerializeField] public int abilityIndex;
+        [SerializeField] public int abilityValue = 1;
 
         [Header("Work")]
         [SerializeField] public int maxWorkPoint;
@@ -32,6 +33,7 @@ namespace Imnyeong
             //thumbnail = _cat.thumbnail;
 
             abilityType = _cat.abilityType;
+            abilityIndex = _cat.abilityIndex;
             abilityValue = _cat.abilityValue;
 
             maxWorkPoint = _cat.maxWorkPoint;
@@ -79,7 +81,7 @@ namespace Imnyeong
 
             if (currentWorkPoint >= maxWorkPoint)
             {
-                GameManager.instance.GetIngredient(abilityType, abilityValue);
+                GameManager.instance.GetIngredient(abilityType, abilityIndex, abilityValue);
                 currentWorkPoint = 0;
             }
             workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);
@@ -90,7 +92,7 @@ namespace Imnyeong
             int count = _sec / maxWorkPoint;
             int remain = _sec % maxWorkPoint;
 
-            GameManager.instance.GetIngredient(abilityType, abilityValue, count);
+            GameManager.instance.GetIngredient(abilityType, abilityIndex, count);
 
             currentWorkPoint = remain;
             workSlider.value = ((float)currentWorkPoint / (float)maxWorkPoint);

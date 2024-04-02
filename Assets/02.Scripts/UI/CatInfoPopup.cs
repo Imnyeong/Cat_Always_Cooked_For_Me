@@ -7,10 +7,10 @@ namespace Imnyeong
     {
         public override PopupType popupType => PopupType.CatInfo;
 
-        //private Cat cat;
+        private Cat cat;
         [SerializeField] private Image thumbnail;
         [SerializeField] private Button closeButton;
-        [SerializeField] private Text abilityType;
+        [SerializeField] private Text ingredient;
         [SerializeField] private Text abilityValue;
         [SerializeField] private Text workPoint;
 
@@ -20,19 +20,9 @@ namespace Imnyeong
             closeButton.onClick.RemoveAllListeners();
             closeButton.onClick.AddListener(HidePopup);
 
+            cat = _cat; 
             thumbnail.sprite = _cat.thumbnail.sprite;
-            switch(_cat.abilityType)
-            {
-                case AbilityType.Wood:
-                    abilityType.text = "나무";
-                    break;
-                case AbilityType.Rice:
-                    abilityType.text = "쌀";
-                    break;
-                case AbilityType.Fish:
-                    abilityType.text = "물고기";
-                    break;
-            }
+            ingredient.text = GameManager.instance.gameData.ingredientDatas.Find(x => (x.abilityType == _cat.abilityType) && (x.abilityIndex == _cat.abilityIndex)).ingredientName;
             abilityValue.text = _cat.abilityValue.ToString();
             workPoint.text = _cat.workDelay.ToString();
         }
