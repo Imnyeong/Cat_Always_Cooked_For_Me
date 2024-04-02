@@ -46,7 +46,7 @@ namespace Imnyeong
         private void Start()
         {
             Init();
-            GameManager.instance.LoadData();
+            //GameManager.instance.LoadData();
         }
         #endregion
 

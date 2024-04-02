@@ -1,5 +1,11 @@
 namespace Imnyeong
 {
+    public enum CatColor
+    {
+        Black,
+        White,
+        Cheese
+    }
     public enum AbilityType
     {
         Wood,

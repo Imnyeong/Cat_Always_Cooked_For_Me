@@ -70,7 +70,7 @@ namespace Imnyeong
 
                 if (currentIngredient == null || currentIngredient.count < _food.requiredCounts[i])
                 {
-                    Debug.Log("재료 부족");
+                    //Debug.Log("재료 부족");
                     currentIngredient = null;
                     return false;
                 }
@@ -92,7 +92,7 @@ namespace Imnyeong
                     currentIngredient.count -= _food.requiredCounts[i];
                 }
             }
-            Debug.Log("요리 성공");
+            //Debug.Log("요리 성공");
         }
         public bool FindFood(FoodData _data)
         {
@@ -125,7 +125,7 @@ namespace Imnyeong
         {
             if (!FindFood(_data) || currentFood.count < _count)
             {
-                Debug.Log("옳지 않은 판매");
+                //Debug.Log("옳지 않은 판매");
                 return;
             }
             else
@@ -182,7 +182,7 @@ namespace Imnyeong
         #region Save
         public void SaveData()
         {
-            //SaveCat();
+            LocalSaveCat();
             SaveData saveData = new SaveData()
             {
                 catList = localDataBase.catList,
@@ -226,7 +226,7 @@ namespace Imnyeong
         }
         #endregion
         #region Cat
-        public void SaveCat()
+        public void LocalSaveCat()
         {
             localDataBase.catList.Clear();
             for (int i = 0; i < UIManager.instance.cats.Count; i++)
@@ -240,8 +240,11 @@ namespace Imnyeong
                         abilityValue = UIManager.instance.cats[i].abilityValue,
                         maxWorkPoint = UIManager.instance.cats[i].maxWorkPoint,
                         currentWorkPoint = UIManager.instance.cats[i].currentWorkPoint,
-                        workDelay = UIManager.instance.cats[i].workDelay
-                    };
+                        workDelay = UIManager.instance.cats[i].workDelay,
+                        valueLevel = UIManager.instance.cats[i].valueLevel,
+                        delayLevel = UIManager.instance.cats[i].delayLevel,
+                        neglectLevel = UIManager.instance.cats[i].neglectLevel
+                };
                     localDataBase.catList.Add(tmpData);
                 }
             }
@@ -265,12 +268,12 @@ namespace Imnyeong
             localDataBase.catList.RemoveAt(_index);
         }
         #endregion
-        //private void OnApplicationFocus(bool focus)
-        //{
-        //    if (focus)
-        //        SaveData();
-        //    else
-        //        LoadData();
-        //}
+        private void OnApplicationFocus(bool focus)
+        {
+            if (!focus)
+                SaveData();
+            else
+                LoadData();
+        }
     }
 }
